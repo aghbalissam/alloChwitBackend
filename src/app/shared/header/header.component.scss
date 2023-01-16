@@ -1,0 +1,32 @@
+$primary-color:#192C4D;
+$secondary-color:#EBB03B;
+
+.allochwit-header
+{
+    height: 4.5rem !important;
+
+    .col.header-part1
+    {
+        img
+        {
+            height: 4rem;
+        }
+    }
+
+    .col.header-part2
+    {
+        
+    }
+
+    .col.header-part3
+    {
+        >div
+        {
+            height: 50px;
+            width: 50px;
+            background-color: $secondary-color;
+            border-radius: 100%;
+        }
+    }
+
+}

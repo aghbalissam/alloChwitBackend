@@ -1,0 +1,19 @@
+<div class="text-center py-3 sticky-top">
+    <h2>
+        Votre Commande
+    </h2>
+    <div *ngIf="cartElements.length == 0" class="my-4">
+        <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/svg/astronaut-grey-scale.svg" alt="">
+        <p class="mt-4 px-3">
+            Vous n'avez ajouté aucun produit. Quand vous le ferez, vous les verrez ici !
+        </p>
+    </div>
+    <div *ngIf="cartElements.length > 0">
+        <div *ngFor="let prod of cartElements">
+            <h5> {{ prod?.productName }} </h5>
+            <p> {{ prod?.productPrice }} </p> 
+            <p> {{ prod?.productCount }} </p>  
+            <div></div>
+        </div>
+    </div>    
+</div>

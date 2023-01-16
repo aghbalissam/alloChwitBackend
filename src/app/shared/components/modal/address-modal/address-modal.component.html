@@ -1,0 +1,59 @@
+<section id="address-modal" class="d-flex justify-content-center align-items-center" *ngIf="location || mapPin" > 
+    <div class="container address-modal-container p-3">
+        <div class="row mb-4">
+            <div class="col d-flex justify-content-end">
+                <i class="fa-sharp fa-solid fa-xmark pointer" (click)="closePopUp()"></i>
+            </div>
+        </div>
+        <div class="row text-center mb-4">
+            <div class="col">
+                <h3>Ajouter une adresse de livraison</h3>
+            </div>
+        </div>
+        <div class="row p-3" *ngIf="location">
+            <div class="col-6">
+                <div class="mb-3">
+                    <form action="">
+                        <div class="d-flex"> 
+                            <input type="text" placeholder="rechercher" class="form-control">
+                            <button type="submit" class="btn"> <i class="fa-solid fa-magnifying-glass"></i> </button>    
+                        </div>
+                    </form>
+                    <div *ngIf="searchBox" class="mt-1" id="searchBox">
+                        <ul>
+                            <li *ngFor="let item of exampleList">
+                                <a href="#" class="d-block">
+                                    {{ item }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-inline-flex align-items-center mb-3 gap-2 pointer" (click)="getCurrentPos()">
+                    <div class="circle">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <span>
+                        Utiliser votre localisation
+                    </span>
+                </div>
+                <div class="d-inline-flex align-items-center mb-3 gap-2 pointer" (click)="mapPin = true ; location = false">
+                    <div class="circle">
+                        <i class="fa-solid fa-map-pin"></i>
+                    </div>
+                    <span>
+                        Selectionner votre position dans la carte 
+                    </span>
+                </div>
+            </div>
+            <div class="col-6 overflow-hidden">
+                <img src="https://img.freepik.com/free-vector/informational-city-map-with-streets-name_23-2148309621.jpg?w=900&t=st=1673787691~exp=1673788291~hmac=310e39372eda9ca2d2145cecc31719fd74e4b4ac513bfb43ea3fbb6c4065b1ef" alt="">
+            </div>
+        </div>
+        <div class="row p-3" *ngIf="mapPin">
+            <div class="col-6">
+                Select our location
+            </div>
+        </div>
+    </div>
+</section>

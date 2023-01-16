@@ -1,0 +1,71 @@
+<app-breadcrumb [title]="currentRestaurant.name"></app-breadcrumb>
+<section id="single-element">
+    <div class="container-fluid px-4 py-5">
+        <div class="row">
+            <div class="col-9">
+                <div class="single-element-part1 p-3">
+                    <app-breadcrumb-single 
+                        [currentRest]="currentRestaurant">
+                    </app-breadcrumb-single>
+                </div>
+                <div class="container p-3">
+                    <div class="row my-4">
+                        <div class="col-3"></div>
+                        <div class="col-9">
+                            <form action="" id="search-single">
+                                <input type="text" 
+                                [placeholder]="'Recherche dans ' + currentRestaurant.name" 
+                                class="form-control" 
+                                id="search-input"
+                            >
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="single-menuslistFilter">
+                                <h5 class="d-flex align-items-center justify-content-lg-between"> Menu 
+                                    <i class="fa-solid fa-chevron-down" (click)="showMenu=!showMenu"></i>
+                                </h5>
+                                <div class="listMenu"  *ngIf="showMenu">
+                                    <ul class="p-0 list-style-none">
+                                        <li *ngFor="let item of menuslistFilter" 
+                                            class="p-3"
+                                            (click)="generateLinkSame(item)">
+                                            {{ item }}
+                                        </li>
+                                    </ul> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div *ngIf="currentRestaurant.menus.length == 0">
+                                Aucun Element
+                            </div>
+                            <div *ngIf="currentRestaurant.menus.length > 0">
+                                <div *ngFor="let item of currentRestaurant.menus" class="menus-list mb-5">
+                                    <div class="menus-list-title" id="{{ item.title }}" >
+                                        <h3>{{ item.title }}</h3>
+                                    </div>
+                                    <div class="menus-list-items">
+                                        <div *ngFor="let singleMenu of item.list" class="p-3 menus-list-items-single pointer" (click)="updateSelectedProd(singleMenu)">
+                                            <span>{{ singleMenu.name }}</span>
+                                            <p>{{ singleMenu.description }}</p  >
+                                            <span>{{ singleMenu.price }} $ </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 sticky-top d-inline-block">
+                <div class="single-element-cart p-3 sticky-top">
+                    <app-cart-modal></app-cart-modal>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-quick-view [product]="productSelected"></app-quick-view>

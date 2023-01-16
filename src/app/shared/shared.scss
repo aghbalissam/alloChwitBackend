@@ -1,0 +1,29 @@
+// Vars
+
+$primary-color:#192C4D;
+$secondary-color:#EBB03B;
+
+.hello
+{
+    background-color: red;
+}
+
+// Functions
+
+@mixin SizeBox($hei,$wid)
+{
+    height: $hei;
+    width: $wid;
+} 
+
+// Shared 
+a
+{
+    text-decoration: none;
+}
+
+ul
+{
+    list-style: none;
+    padding: 0px;
+}

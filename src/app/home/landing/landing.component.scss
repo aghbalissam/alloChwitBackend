@@ -1,0 +1,224 @@
+// Vars
+
+$primary-color:#192C4D;
+$secondary-color:#EBB03B;
+$recImage1Hei : 400px; 
+$recImage2Hei : 150px;
+
+
+// Global 
+
+a
+{
+    text-decoration: none;
+}
+
+// Functions
+
+@mixin SizeBox($hei,$wid)
+{
+    height: $hei;
+    width: $wid;
+} 
+
+
+#home-part1
+{
+    height: calc(90vh - 4.5rem);
+    background-color: $primary-color;
+
+    >div 
+    {
+        h1
+        {
+            color: white;
+            font-size: 60px;
+            span
+            {
+                color: $secondary-color;
+            }
+        }
+
+        .search-adress
+        {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;   
+            .search-adress-box
+            {
+                border: 1px solid $secondary-color;
+                border-radius: 5px;
+            } 
+        }
+    }
+}
+
+#home-part2
+{
+    padding-bottom: 60px;
+    .col
+    {
+        background-color: white;
+        border-radius: 10px;
+        padding: 25px 15px;
+        margin-top: -3%;
+        box-shadow: 0px 2px 24px 6px rgba(0,0,0,.06);
+
+        .circle-icon
+        {
+            @include SizeBox(70px, 70px);
+            background-color: $secondary-color;
+            border-radius: 100%;
+            margin-right: 10px;
+        }
+    }
+}
+
+
+#home-part3
+{
+    padding: 30px;
+
+    .home-part3-title
+    {
+        margin-bottom: 30px;
+        h2
+        {
+            font-size: 40px;
+        }
+    }    
+
+    .home-part3-list
+    {        
+        div
+        {
+            padding: 10px 20px;
+            background-color: $secondary-color;
+            color: $primary-color;
+            border-radius: 30px;
+            margin: 0px 4px;
+            font-size: 20px;
+
+        }
+    }
+}
+
+
+#home-part4
+{
+
+    .recommandations-container
+    {
+
+        .recommandations-container-part1
+        {
+
+            >div
+            {
+                border-radius: 10px;
+                overflow: hidden;
+                background-color: #e7e7e7;
+                .recommendations-image1
+                {
+                    height: $recImage1Hei;
+                } 
+            }
+
+        }
+
+        .recommandations-list
+        {
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+            >div
+            {
+                border-radius: 10px;
+                overflow: hidden;
+                background-color: #e7e7e7;
+                .recommendations-image2
+                {
+                    height: $recImage2Hei;
+                }
+            }
+        }
+
+        img
+        {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+#home-part5
+{
+    background-color: $primary-color;
+    color: white;
+    
+    .col
+    {
+        padding: 0px;
+
+        &:nth-child(2)
+        {
+            padding-left: 30px;
+        }
+
+        img
+        {
+            width: 100%;
+        }
+    }
+
+}
+
+
+#home-part6
+{
+    padding: 40px 0px;
+
+    h2
+    {
+        margin-bottom: 30px;
+        font-size: 40px;
+    }
+
+    .home-opportunities
+    {
+        display: flex;
+        .opportunity-image
+        {
+            @include SizeBox(200px, 200px);
+            border-radius: 100%;
+            border: 2px solid #EBB03B;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+     
+        h6
+        {
+            font-size: 25px;
+        }
+     
+        a
+        {
+            background-color: $secondary-color;
+            color: #000;
+            text-decoration: none;  
+            border-radius: 5px;      
+        }
+    }
+
+}
+
+.color-EBB03B
+{
+    color: $secondary-color;
+}
+
+.link-style-1
+{
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 30px;
+}

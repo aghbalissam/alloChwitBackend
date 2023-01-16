@@ -1,0 +1,78 @@
+<section id="user-account" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="user-account-menu">
+                    <ul class="px-0">
+                        <li>
+                            Mon Profil
+                        </li>
+                        <li>
+                            Supprimer mon compte
+                        </li>
+                        <li>
+                            Deconnexion
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="user-infos-part1 d-flex align-items-center mb-5">
+                    <div class="usip1-img">
+                        <img [src]="userInfos.image" alt="">
+                    </div>
+                    <div class="mx-3">
+                        <span class="usip1-name d-block"> {{ userInfos.name }} </span>
+                        <span class="usip1-email d-block"> {{ userInfos.email }} </span>
+                    </div>
+                </div>
+                <div class="user-infos-part2 pr-5">
+                    <form action="">
+                        <div class="mb-3">
+                            <label for="user-name" class="form-label">Nom</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    id="user-name" 
+                                    [value]="userInfos.name">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="user-email" class="form-label">E-mail</label>
+                            <input type="email" 
+                                    class="form-control" 
+                                    id="user-email" 
+                                    [value]="userInfos.email">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="user-phone" class="form-label">Téléphone</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    id="user-phone" 
+                                    [value]="userInfos.phoneNumber">
+                        </div>
+
+                        <div class="mb-3 password-container">
+                            <label for="user-password" class="form-label">Mot de passe</label>
+                            <div class="d-flex align-items-center">
+                                <input type="password" 
+                                class="form-control" 
+                                id="user-password" 
+                                [type]="passwordType"
+                                [value]="userInfos.password">
+                                <div class="show-password" (click)="changePswTy()">
+                                    <i [class]="classEye"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" 
+                                    class="btn btn-style">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
