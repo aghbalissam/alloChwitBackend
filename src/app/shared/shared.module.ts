@@ -14,11 +14,23 @@ import { CartVariationComponent } from './components/modal/cart-variation/cart-v
 import { NewsletterComponent } from './components/modal/newsletter/newsletter.component';
 import { QuickViewComponent } from './components/modal/quick-view/quick-view.component';
 import { SizeModalComponent } from './components/modal/size-modal/size-modal.component';
-import { VideoModalComponent } from './components/modal/video-modal/video-modal.component';
 import { AddressModalComponent } from './components/modal/address-modal/address-modal.component';
 import { BreadcrumbSingleComponent } from './components/breadcrumb-single/breadcrumb-single.component';
 import { UserAuthComponent } from './components/modal/user-auth/user-auth.component';
-
+import { CounterComponent } from './components/counter/counter.component';
+import { MaterialModule } from '../material/material.module';
+import { FormsModule } from '@angular/forms';
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { ChangepassComponent } from './components/changepass/changepass.component';
+import { EditprofileComponent } from './components/editprofile/editprofile.component';
+import { ProductOneBoxComponent } from './components/product/product-one-box/product-one-box.component';
+import { ProductTwoBoxComponent } from './components/product/product-two-box/product-two-box.component';
+import { ProductSharedBoxComponent } from './components/product/product-shared-box/product-shared-box.component';
+import { ProductComponent } from './components/skeleton/product/product.component';
+import { SingleresComponent } from './components/skeleton/singleres/singleres.component';
+import { CategoryComponent } from './components/skeleton/category/category.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -36,13 +48,26 @@ import { UserAuthComponent } from './components/modal/user-auth/user-auth.compon
     NewsletterComponent,
     QuickViewComponent,
     SizeModalComponent,
-    VideoModalComponent,
     AddressModalComponent,
     BreadcrumbSingleComponent,
-    UserAuthComponent
+    UserAuthComponent,
+    CounterComponent,
+    SigninComponent,
+    SignupComponent,
+    ChangepassComponent,
+    EditprofileComponent,
+    ProductOneBoxComponent,
+    ProductTwoBoxComponent,
+    ProductSharedBoxComponent,
+    ProductComponent,
+    SingleresComponent,
+    CategoryComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule,
+    FormsModule,
+    NgxSkeletonLoaderModule
   ],
   exports: [
     HeaderComponent,
@@ -53,7 +78,11 @@ import { UserAuthComponent } from './components/modal/user-auth/user-auth.compon
     CartModalComponent,
     BreadcrumbSingleComponent,
     UserAuthComponent,
-    QuickViewComponent
+    QuickViewComponent,
+    CounterComponent,
+    ProductComponent,     // skeleton
+    CategoryComponent,    // skeleton
+    SingleresComponent    // skeleton
   ]
 })
 export class SharedModule { }

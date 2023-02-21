@@ -12,16 +12,50 @@ $secondary-color:#EBB03B;
         display: grid;
         grid-template-columns: 1fr 1fr;
         position: relative;
+        padding: 0px;
+        overflow: hidden;
+
+        .infos-image
+        {
+            max-height: 180px;
+            img
+            {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .infos-content
+        {
+            h5
+            {
+                font-size: 35px;
+                font-weight: 700;
+            }
+
+            p
+            {
+                font-size: 25px;
+                font-weight: 600;
+            }
+        }
+
         .phone-icon
         {
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            height: 70px;
-            width: 70px;
+            height: 80px;
+            width: 80px;
             border-radius: 100%;
-            border: 2px solid $primary-color;
+            border: 3px solid $primary-color;
+            background-color: white;
+            i
+            {
+                font-size: 30px;
+            }
         }
     }
 

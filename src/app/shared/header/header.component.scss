@@ -15,17 +15,21 @@ $secondary-color:#EBB03B;
 
     .col.header-part2
     {
-        
+        #search-header
+        {
+            border-radius: 30px;
+        } 
     }
 
     .col.header-part3
     {
-        >div
+        >div:not(.user-location)
         {
             height: 50px;
             width: 50px;
             background-color: $secondary-color;
             border-radius: 100%;
+            position: relative;
         }
     }
 

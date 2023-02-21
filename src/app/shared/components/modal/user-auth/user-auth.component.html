@@ -1,35 +1,18 @@
-<section id="user-auth" class="d-flex justify-content-center" *ngIf="userAuth">
+<section id="user-auth">
     <div>
         <div class="user-auth-part1 d-flex justify-content-center align-items-center"> 
-            <div class="close" (click)="closeModalUser()">                <i class="fa-sharp fa-solid fa-xmark"></i>
+            <div class="close">
+                <button mat-icon-button mat-dialog-close>
+                    <mat-icon>close</mat-icon>
+                </button>
             </div>
             <h3 class="text-center mt-4">
-                {{ operation }}  à AlloChwit
+                {{ operation }} à AlloChwit
             </h3>
         </div>
         <div id="user-up" *ngIf="userUp">  
-            <form action="" class="text-center">
-                <div class="mb-3 d-flex">
-                    <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/glyphs/person.svg" alt="">
-                    <input type="text" class="form-control" id="InputName" placeholder="Nom" >
-                </div>
-
-                <div class="mb-3 d-flex"> 
-                    <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/glyphs/letter.svg" alt="">
-                    <input type="email" 
-                            class="form-control" 
-                            id="InputEmail1"  
-                            placeholder="E-mail" 
-                            aria-describedby="emailHelp">
-                </div>
-
-                <div class="mb-3 d-flex">
-                    <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/glyphs/lock.svg" alt="">
-                    <input type="password" class="form-control" id="InputPassword1" placeholder="Mot de passe">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Inscription</button>
-            </form>
+            <!-- component -->
+            <app-signup></app-signup>
             <div class="my-4 text-center">
                 Vous avez déjà un compte ? 
                 <button (click)="showBox('in')" class="btn-show">
@@ -38,21 +21,10 @@
             </div>
         </div>
         <div id="user-in" *ngIf="userIn">
-            <form action="" class="text-center">
-                <div class="mb-3 d-flex">
-                    <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/glyphs/letter.svg" alt="">
-                    <input type="email" class="form-control" id="InputEmail1"  placeholder="E-mail" aria-describedby="emailHelp">
-                </div>
-
-                <div class="mb-3 d-flex">
-                    <img src="https://res.cloudinary.com/glovoapp/image/fetch//q_auto/https://glovoapp.com/images/glyphs/lock.svg" alt="">
-                    <input type="password" class="form-control" id="InputPassword1" placeholder="Mot de passe">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Connexion</button>
-            </form>
+            <!-- component -->
+            <app-signin></app-signin>
             <div class="my-4 text-center">
-                Vous débutez sur Glovo ? 
+                Vous débutez sur AlloChwit ? 
                 <button (click)="showBox('up')" class="btn-show"> 
                     Inscription 
                 </button>

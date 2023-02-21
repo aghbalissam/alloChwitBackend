@@ -1,1 +1,21 @@
-<p>search works!</p>
+<div class="container">
+    <div class="row">
+        <h3> Restaurants & Cafés </h3>
+        <!-- Partners -->
+        <div class="col" *ngFor="let p of partners">
+            <!-- Components -->
+            <img [src]="p.image" alt="" style="height:180px;border-radius: 10px;">
+            <h4>{{ p.name }}</h4>
+            <span>{{ p.shipping }}</span>
+            <span>{{ p.time }}</span>
+            <span>{{ p.rating }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <h3> Menus </h3>
+        <!-- Menus -->
+        <div>
+
+        </div>
+    </div>
+</div>

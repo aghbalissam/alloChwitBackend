@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Host } from '@angular/core';
+import { GlobalService } from 'src/app/services/global.service';
+import * as L from 'leaflet';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-address-modal',
@@ -6,54 +10,122 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['../../../shared.scss','./address-modal.component.scss']
 })
 
-export class AddressModalComponent implements OnInit {
-
-  mapPin =false;
+export class AddressModalComponent implements OnInit /*, AfterViewInit*/
+{
+  searchAdr = ''
+  mapPin = false;
   location = true; 
-  searchBox = true;
+  searchBox = false;
+  
+  currentLocation : {lat : number, long: number} = {
+    lat : 0,
+    long : 0
+  };
+  map : any;
 
-  exampleList = 
-  [
-    'Rue 1',
-    'Rue 2',
-    'Rue 3',
-    'Rue 4',
-    'Rue 5',
-    'Rue 6',
-    'Rue 7',
-    'Rue 8'
-  ]
+  maxZoom = 30;
+  minZoom = 3;
+  exampleList :any[] = [] 
+  listEmpty : string[] = []; 
+  resCof = []
 
-  constructor() { }
+  constructor(
+    private router : Router,
+    private activatedRouter : ActivatedRoute,
+    private globalService : GlobalService,
+    private dialog : MatDialog
+  ) { }
 
   ngOnInit(): void {
-    
+    this.exampleList = this.globalService.getAllAdrs();
   }
+
+  // ngAfterViewInit(): void {
+  //   this.initMap();
+  // }
+
+
+  // initMap(): void {
+  //   this.map = L.map('map', {
+  //     center: [ 33.5922, -7.6184],
+  //     zoom: 8
+  //   });
+
+  //   this.map = L.map('map2', {
+  //     center: [ 33.5922, -7.6184],
+  //     zoom: 8
+  //   });
+
+  //   const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //     maxZoom: this.maxZoom,
+  //     minZoom: this.minZoom,
+  //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  //   });
+  //   tiles.addTo(this.map);
+  // }
 
   getCurrentPos()
   {
     navigator.geolocation.getCurrentPosition((position) => {
-      let lat = position.coords.latitude;
-      let long = position.coords.longitude;
-      // let long = Math.abs(position.coords.longitude);
 
+      // let long = Math.abs(position.coords.longitude);
       //latText.innerText = lat.toFixed(2);
       //longText.innerText = long.toFixed(2);
-  
-      console.log(lat);
-      console.log(long);
+      this.currentLocation.lat = position.coords.latitude;
+      this.currentLocation.long = position.coords.longitude;
+      // Show This Location in 
+
+
+      L.marker([this.currentLocation.lat, this.currentLocation.long]).addTo(this.map);
+      this.minZoom = 20
+
     });
   }
 
   closePopUp()
   {
-    this.location = this.mapPin = false;
+    this.mapPin = false;
+    this.location = true;
+    this.dialog.closeAll();
   }
 
-
-  searchAdress()
+  searchAdress(searchVal: string)
   {
+    // Use Values
     
+    // Get directly data from server
+    if(searchVal.length > 1)
+    {
+      let y = searchVal.toLowerCase();
+      this.exampleList.forEach((item) => {
+        let x = item.toLowerCase();
+        if(x.indexOf(y) != -1)
+        { 
+          if(!this.listEmpty.includes(x))
+          this.listEmpty.push(x);
+        }
+        else if(this.listEmpty.includes(x))
+        {
+          let u = this.listEmpty.findIndex(city => city == x)
+          this.listEmpty.splice(u, 1)
+        }
+      });      
+      (this.listEmpty.length > 0)? this.searchBox = true : this.searchBox = false; 
+    }
+    else
+    {
+      this.searchBox = false;
+      this.listEmpty = []
+    }
+  }
+
+  goTo(city: string)
+  {
+    // Error
+    this.globalService.setAddressValue(city);
+    this.router.navigate([`${city}/restaurants`])
+    this.location = this.mapPin = false;
+    this.closePopUp();
   }
 
 }

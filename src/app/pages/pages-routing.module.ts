@@ -1,9 +1,12 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Path } from 'leaflet';
+import { AuthGuard } from '../auth.guard';
 import { AccountComponent } from './account/account.component';
 import { ErrorComponent } from './error/error.component';
 import { FaqComponent } from './faq/faq.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { SearchComponent } from './search/search.component';
 import { SingleRestaurantComponent } from './single-restaurant/single-restaurant.component';
 
 const routes: Routes = [
@@ -13,7 +16,13 @@ const routes: Routes = [
   },
   {
     path : ':city/restaurants',
-    component : RestaurantsComponent
+    component : RestaurantsComponent,
+    // children :
+    // [
+    //   {
+    //     path : '',
+    //     component : }
+    // ]
   },
   {
     path : '404',
@@ -26,8 +35,17 @@ const routes: Routes = [
   },
   {
     path : 'account',
-    component : AccountComponent
-  }
+    component : AccountComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path : 'search/:term',
+    component : SearchComponent
+  },
+  // {
+  //   path : ':city/restaurants?filterby=:type',
+  //   component : FilterResCofComponent
+  // },
 ];
 
 @NgModule({

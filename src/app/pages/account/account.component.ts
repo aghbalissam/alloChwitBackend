@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -8,22 +8,47 @@ import { DataService } from 'src/app/data.service';
 })
 export class AccountComponent implements OnInit {
 
-  userInfos = this.dataService.userInfos;
+  userInfos !: any;
   passwordType : string = 'password';
   classEye : string = 'fa-solid fa-eye';
+  compPass = false;
+  compProf = true;
+  active = 'top';
 
   constructor(
-    private dataService : DataService
+    private router : Router
   ) { }
 
   ngOnInit(): void {
+    this.userInfos = JSON.parse(localStorage.getItem('user') as string);
+    console.log('User infos =>', this.userInfos );
   }
 
   changePswTy()
   {
-    console.log('hello');
     (this.passwordType == 'password') ? this.passwordType = 'text' :this.passwordType = 'password';
     (this.classEye == 'fa-solid fa-eye') ? this.classEye = 'fa-sharp fa-solid fa-eye-slash' :this.classEye = 'fa-solid fa-eye';
+  }
+
+  logOut()
+  {
+    localStorage.removeItem('token');
+    this.router.navigate(['']);
+  }
+
+  showComp(comp: string)
+  {
+    // customize this code
+    if(comp == 'profile')
+    {
+      this.compProf = true;
+      this.compPass = false;
+    }
+    else
+    {
+      this.compPass = true;
+      this.compProf = false;
+    }
   }
 
 }

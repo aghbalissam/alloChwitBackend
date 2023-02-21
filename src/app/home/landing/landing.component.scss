@@ -5,14 +5,6 @@ $secondary-color:#EBB03B;
 $recImage1Hei : 400px; 
 $recImage2Hei : 150px;
 
-
-// Global 
-
-a
-{
-    text-decoration: none;
-}
-
 // Functions
 
 @mixin SizeBox($hei,$wid)
@@ -21,6 +13,13 @@ a
     width: $wid;
 } 
 
+@mixin shared1($rad, $overf, $back, $col: unset)
+{
+    border-radius: $rad;
+    overflow: $overf;
+    background-color: $back;
+    color: $col;
+}
 
 #home-part1
 {
@@ -41,8 +40,7 @@ a
 
         .search-adress
         {
-            background-color: white;
-            border-radius: 10px;
+            @include shared1(10px, unset,white );
             padding: 20px;   
             .search-adress-box
             {
@@ -58,19 +56,21 @@ a
     padding-bottom: 60px;
     .col
     {
-        background-color: white;
-        border-radius: 10px;
+        @include shared1(10px, unset, white);
         padding: 25px 15px;
         margin-top: -3%;
         box-shadow: 0px 2px 24px 6px rgba(0,0,0,.06);
-
         .circle-icon
         {
             @include SizeBox(70px, 70px);
-            background-color: $secondary-color;
-            border-radius: 100%;
+            @include shared1(100%, unset, $secondary-color);
             margin-right: 10px;
+            img
+            {
+                @include SizeBox(40px, 40px);
+            }
         }
+        
     }
 }
 
@@ -93,12 +93,9 @@ a
         div
         {
             padding: 10px 20px;
-            background-color: $secondary-color;
-            color: $primary-color;
-            border-radius: 30px;
+            @include shared1(30px, hidden, $secondary-color, $primary-color);
             margin: 0px 4px;
             font-size: 20px;
-
         }
     }
 }
@@ -106,76 +103,89 @@ a
 
 #home-part4
 {
-
     .recommandations-container
     {
-
         .recommandations-container-part1
         {
-
             >div
             {
-                border-radius: 10px;
-                overflow: hidden;
-                background-color: #e7e7e7;
+                @include shared1(10px, hidden, #f7f7f7);
                 .recommendations-image1
                 {
                     height: $recImage1Hei;
                 } 
             }
-
         }
-
+        
         .recommandations-list
         {
             grid-template-columns: 1fr 1fr;
             grid-gap: 10px;
             >div
             {
-                border-radius: 10px;
-                overflow: hidden;
-                background-color: #e7e7e7;
+                @include shared1(10px, hidden, #f7f7f7);
                 .recommendations-image2
-                {
+                {   
                     height: $recImage2Hei;
                 }
             }
         }
 
+        p 
+        {
+            margin-bottom: 7px;
+        }
+
+        i
+        {
+            color: $secondary-color;
+        }
+
         img
         {
-            height: 100%;
-            width: 100%;
+            @include SizeBox(100%, 100%);
         }
+
+        .circle-icon
+        {
+            @include SizeBox(35px, 35px);
+            @include shared1(100%, unset, $secondary-color);
+            margin-right: 10px;
+            i
+            {
+                color: $primary-color;
+            }
+        }
+
     }
 }
 
 #home-part5
 {
-    background-color: $primary-color;
-    color: white;
-    
+    @include shared1(unset, unset, $primary-color, white);
     .col
     {
         padding: 0px;
+        &:nth-child(1)
+        {
+            padding-left: 30px;
+            img
+            {
+                width: 100%;
+            }
+        }
 
         &:nth-child(2)
         {
             padding-left: 30px;
         }
-
-        img
-        {
-            width: 100%;
-        }
     }
-
 }
 
 
 #home-part6
 {
-    padding: 40px 0px;
+    padding: 60px 0px;
 
     h2
     {
@@ -189,10 +199,15 @@ a
         .opportunity-image
         {
             @include SizeBox(200px, 200px);
-            border-radius: 100%;
-            border: 2px solid #EBB03B;
+            border: 3px solid #EBB03B;
             margin: auto;
             margin-bottom: 10px;
+            @include shared1(100%, hidden, unset);
+            img
+            {
+                @include SizeBox(100%, 100%);
+                object-fit: cover;
+            }
         }
      
         h6
@@ -202,15 +217,14 @@ a
      
         a
         {
-            background-color: $secondary-color;
-            color: #000;
             text-decoration: none;  
-            border-radius: 5px;      
+            @include shared1(5px,unset , $secondary-color, #000);   
         }
     }
-
 }
 
+
+// share this class
 .color-EBB03B
 {
     color: $secondary-color;
@@ -218,7 +232,8 @@ a
 
 .link-style-1
 {
-    background-color: $secondary-color;
-    color: $primary-color;
-    border-radius: 30px;
+    @include shared1(30px, unset, $secondary-color,$primary-color);
 }
+
+
+

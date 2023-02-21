@@ -34,7 +34,23 @@ const filters = [
     {
         name : 'Lebanese',
         image : 'https://res.cloudinary.com/glovoapp/w_22,h_22,c_pad,b_transparent,f_auto,q_auto:low,dpr_1.0/filters/ylxplrrdjanivkmfhzfy'
+    },
+    {
+        name : 'Sandwich',
+        image : 'https://res.cloudinary.com/glovoapp/w_22,h_22,c_pad,b_transparent,f_auto,q_auto:low,dpr_1.0/filters/zuurobratonms7fd5cbn'
     }
 ]
 
-export default filters;
+
+const filterTypes = [
+    {
+        name : 'restaurant',
+        image : '/assets/fork.png'
+    },
+    {
+        name : 'cafe',
+        image : '/assets/coffee-cup (1).png'
+    }
+]
+
+export  { filters, filterTypes };

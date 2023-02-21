@@ -25,19 +25,16 @@ $secondary-color:#EBB03B;
 
     .user-infos-part1
     {
-        .usip1-img
+        .usip1-icon
         {
             height: 80px;
             width: 80px;
-            background-color: #e7e7e7;
+            background-color: $primary-color;
+            color: $secondary-color;
             border-radius: 100%;
             overflow: hidden;
-            img
-            {
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-            }
+            font-size: 40px;
+            font-weight: 500;
         }
 
         .usip1-name

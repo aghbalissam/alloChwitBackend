@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/data.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
+import { GlobalService } from 'src/app/services/global.service';
+import { AddressModalComponent } from 'src/app/shared/components/modal/address-modal/address-modal.component';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  styleUrls: ['../../shared/shared.scss','./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
 
   rests = this.dataService.listRestaurants;
-
-  addressActive = true;
 
   meilleuresCat = [
     "Burgers",
@@ -21,11 +23,12 @@ export class LandingComponent implements OnInit {
     "Pâtes",
     "Italien"
   ]
-
+  
+  // From database 
   Opportunites = [
     {
       title :'Emploi',
-      image : '',
+      image : 'https://images.pexels.com/photos/3338672/pexels-photo-3338672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       shortDescription : `Vous cherchez un nouveau défi ?
       Si vous faites preuve d'ambition et d'humilité
       et aimez travailler en équipe, contactez-nous !`,
@@ -33,7 +36,7 @@ export class LandingComponent implements OnInit {
     },
     {
       title :'Devenir partenaire',
-      image : '',
+      image : 'https://images.pexels.com/photos/8276360/pexels-photo-8276360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       shortDescription : `Grandissez avec Allo chwit !
       Boostez les ventes et accédez à de nouvelles
       opportunités grâce à notre technologie et
@@ -42,7 +45,7 @@ export class LandingComponent implements OnInit {
     },
     {
       title :'Devenir coursier',
-      image : '',
+      image : 'https://images.pexels.com/photos/6169052/pexels-photo-6169052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       shortDescription : `C'est vous le chef ! Livrez avec Allo chwit
       pour gagner des revenus compétitifs
       en toute flexibilité et liberté.`,
@@ -51,16 +54,27 @@ export class LandingComponent implements OnInit {
   ]
 
   constructor(
-    private dataService : DataService
+    private dataService : DataService,
+    private router : Router,
+    private dialog : MatDialog
   ) { }
 
   ngOnInit(): void {
   }
 
-  getAdress()
+  getAdressModal()
   {
-    console.log('hello');
-    this.addressActive = true;
+    this.dialog.open(AddressModalComponent ,
+    {
+      width: '800px'
+    })
   }
+
+  goto(city: string,slogan: string)
+  {
+    this.router.navigate([`/${city}/restaurants/${slogan}`])
+  }
+
+
 
 }
